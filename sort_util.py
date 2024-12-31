@@ -34,7 +34,6 @@ def convert_to_fixed_number_of_points(tab_src, ppsec=10):
         count = 0
         while(is_in_division and current_tab_src < len(tab_src)):
             time, val = tab_src[current_tab_src]
-            # print(time)
 
             if(time >= time_inf and time < time_sup):
                 current_tab_src += 1
@@ -52,7 +51,6 @@ def convert_to_fixed_number_of_points(tab_src, ppsec=10):
             current_time_div = 0
             current_time_sec += 1
             tab_dest.append([])
-
 
     # remove last one if empty
     if(len(tab_dest[-1]) == 0):

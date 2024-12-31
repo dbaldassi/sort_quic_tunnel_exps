@@ -165,20 +165,20 @@ def stats_line_medooze(av_dir, rep_dir, n):
             # insert_sort(medooze_stats_tab[4], (time_sec, recv_value))
             # insert_sort(medooze_stats_tab[5], (time_sec, float(row[rtt])))
             # insert_sort(medooze_stats_tab[6], (time_sec, loss_value))
-            medooze_stats_tab[0].append((time_sec, media_value))
-            medooze_stats_tab[1].append((time_sec, probing_value))
-            medooze_stats_tab[2].append((time_sec, rtx_value))
-            medooze_stats_tab[3].append((time_sec, float(row[targetBitrate])))
-            medooze_stats_tab[4].append((time_sec, recv_value))
-            medooze_stats_tab[5].append((time_sec, float(row[rtt])))
-            medooze_stats_tab[6].append((time_sec, loss_value))
+            medooze_stats_tab[0].append([time_sec, media_value])
+            medooze_stats_tab[1].append([time_sec, probing_value])
+            medooze_stats_tab[2].append([time_sec, rtx_value])
+            medooze_stats_tab[3].append([time_sec, float(row[targetBitrate])])
+            medooze_stats_tab[4].append([time_sec, recv_value])
+            medooze_stats_tab[5].append([time_sec, float(row[rtt])])
+            medooze_stats_tab[6].append([time_sec, loss_value])
 
     print("Convert medooze to fixed point")
-    PPSEC = 10
-    for array in medooze_stats_tab:
-        convert_to_fixed_number_of_points(array, PPSEC)
+    PPSEC = 5
+    for i in range(len(medooze_stats_tab)):
+        medooze_stats_tab[i] = convert_to_fixed_number_of_points(medooze_stats_tab[i], PPSEC)
 
-    trim_arrays(array)
+    trim_arrays(medooze_stats_tab)
     stats_line_medooze = []
     
     try:
